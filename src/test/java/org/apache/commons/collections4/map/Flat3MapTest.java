@@ -795,6 +795,23 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertEquals(TWO, obj);
     }
 
+    /**
+     * Contract: If the map contains a mapping for null key, remove(null) should return the mapped value and remove the entry.
+     * When param key == null, size equals 3, and the key1 field contains null, value1 should be returned.
+     */
+    @Test
+    void testRemove15() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+        final Object obj;
+
+        m.put(null, ONE);
+        m.put(TWO, TWO);
+        m.put(THREE, THREE);
+
+        obj = m.remove(null);
+        assertEquals(ONE, obj);
+    }
+
     @Test
     void testSerialization0() throws Exception {
         final Flat3Map<K, V> map = makeObject();
