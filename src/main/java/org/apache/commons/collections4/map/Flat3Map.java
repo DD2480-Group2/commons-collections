@@ -1065,7 +1065,14 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
             return null;
         }
         if (key == null) {
-            switch (size) {  // drop through
+            return removeNullKey();  // refactored part, calling this method
+        } else {
+            return removeNonNullKey(key, key.hashCode());  // and this method, thus reducing CC in remove.
+        }
+    }
+
+    private V removeNullKey() {
+        switch (size) {  // drop through
             case 3:
                 if (key3 == null) {
                     final V old = value3;
@@ -1128,10 +1135,12 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 0;
                     return old;
                 }
-            }
-        } else if (size > 0) {
-            final int hashCode = key.hashCode();
-            switch (size) {  // drop through
+        }
+        return null;
+    }
+
+    private V removeNonNullKey(Object key, int hashCode) {
+        switch (size) {  // drop through
             case 3:
                 if (hash3 == hashCode && key.equals(key3)) {
                     final V old = value3;
@@ -1194,7 +1203,6 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 0;
                     return old;
                 }
-            }
         }
         return null;
     }
