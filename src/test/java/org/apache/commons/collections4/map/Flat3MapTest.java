@@ -826,7 +826,7 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
      * When calling remove(TWO) the function should return null, since no entry is present with that key.
      */
     @Test
-    void testRemove_case1_hashMismatch() {
+    void testRemove16() {
         final Flat3Map<Object, Integer> m = new Flat3Map<>();
         m.put(ONE, ONE);
 
