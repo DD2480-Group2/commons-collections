@@ -1177,7 +1177,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                 }
 
                 if (hash2 == hashCode && key.equals(key2)) {
-                    Coverage.hit(126);
+                    Coverage.hit(127);
                     final V old = value2;
                     hash2 = hash3;
                     key2 = key3;
@@ -1188,11 +1188,11 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 2;
                     return old;
                 } else {
-                    Coverage.hit(127);
+                    Coverage.hit(128);
                 }
 
                 if (hash1 == hashCode && key.equals(key1)) {
-                    Coverage.hit(128);
+                    Coverage.hit(129);
                     final V old = value1;
                     hash1 = hash3;
                     key1 = key3;
@@ -1203,14 +1203,14 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 2;
                     return old;
                 } else {
-                    Coverage.hit(129);
+                    Coverage.hit(130);
                 }
-                Coverage.hit(130);
+                Coverage.hit(131);
                 return null;
             case 2:
-                Coverage.hit(131);
+                Coverage.hit(132);
                 if (hash2 == hashCode && key.equals(key2)) {
-                    Coverage.hit(132);
+                    Coverage.hit(133);
                     final V old = value2;
                     hash2 = 0;
                     key2 = null;
@@ -1218,11 +1218,11 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 1;
                     return old;
                 } else {
-                    Coverage.hit(133);
+                    Coverage.hit(134);
                 }
 
                 if (hash1 == hashCode && key.equals(key1)) {
-                    Coverage.hit(134);
+                    Coverage.hit(135);
                     final V old = value1;
                     hash1 = hash2;
                     key1 = key2;
@@ -1233,14 +1233,14 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 1;
                     return old;
                 } else {
-                    Coverage.hit(135);
+                    Coverage.hit(136);
                 }
 
                 return null;
             case 1:
-                Coverage.hit(136);
+                Coverage.hit(137);
                 if (hash1 == hashCode && key.equals(key1)) {
-                    Coverage.hit(136);
+                    Coverage.hit(138);
                     final V old = value1;
                     hash1 = 0;
                     key1 = null;
@@ -1248,12 +1248,11 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     size = 0;
                     return old;
                 } else {
-                    Coverage.hit(137);
+                    Coverage.hit(139);
                 }
             }
         } else {
             Coverage.hit(107);
-            return null;
         }
         Coverage.hit(108);
         return null;
