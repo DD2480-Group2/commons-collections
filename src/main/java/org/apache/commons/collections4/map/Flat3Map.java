@@ -752,47 +752,62 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
     @Override
     public boolean equals(final Object obj) {
         if (obj == this) {
+            Coverage.hit(301);
             return true;
         }
         if (delegateMap != null) {
+            Coverage.hit(302);
             return delegateMap.equals(obj);
         }
         if (!(obj instanceof Map)) {
+            Coverage.hit(303);
             return false;
         }
         final Map<?, ?> other = (Map<?, ?>) obj;
         if (size != other.size()) {
+            Coverage.hit(304);
             return false;
         }
         if (size > 0) {
+            Coverage.hit(305);
             Object otherValue = null;
             switch (size) {  // drop through
             case 3:
+                Coverage.hit(306);
                 if (!other.containsKey(key3)) {
+                    Coverage.hit(307);
                     return false;
                 }
                 otherValue = other.get(key3);
                 if (!Objects.equals(value3, otherValue)) {
+                    Coverage.hit(308);
                     return false;
                 }
             case 2:
+                Coverage.hit(309);
                 if (!other.containsKey(key2)) {
+                    Coverage.hit(310);
                     return false;
                 }
                 otherValue = other.get(key2);
                 if (!Objects.equals(value2, otherValue)) {
+                    Coverage.hit(311);
                     return false;
                 }
             case 1:
+                Coverage.hit(312);
                 if (!other.containsKey(key1)) {
+                    Coverage.hit(313);
                     return false;
                 }
                 otherValue = other.get(key1);
                 if (!Objects.equals(value1, otherValue)) {
+                    Coverage.hit(314);
                     return false;
                 }
             }
         }
+        Coverage.hit(315);
         return true;
     }
 
