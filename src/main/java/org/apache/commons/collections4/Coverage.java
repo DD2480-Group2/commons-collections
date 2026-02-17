@@ -22,9 +22,9 @@ public class Coverage {
     public static final boolean[] coverage_array  = new boolean[600]; // IDs 0..199
     private static boolean endPrint = false;
 
-    public static void hit(boolean[] arr, int id) {
+    public static void hit(int id) {
         // Mark your
-        arr[id] = true;
+        coverage_array[id] = true;
 
         if (!endPrint) {
             endPrint = true;
