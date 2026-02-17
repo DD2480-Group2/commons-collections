@@ -754,60 +754,85 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         if (obj == this) {
             Coverage.hit(301);
             return true;
+        } else {
+            Coverage.hit(302);
         }
         if (delegateMap != null) {
-            Coverage.hit(302);
+            Coverage.hit(303);
             return delegateMap.equals(obj);
+        } else {
+            Coverage.hit(304);
         }
         if (!(obj instanceof Map)) {
-            Coverage.hit(303);
+            Coverage.hit(305);
             return false;
+        } else {
+            Coverage.hit(306);
         }
         final Map<?, ?> other = (Map<?, ?>) obj;
         if (size != other.size()) {
-            Coverage.hit(304);
+            Coverage.hit(307);
             return false;
+        } else {
+            Coverage.hit(308);
         }
         if (size > 0) {
-            Coverage.hit(305);
+            Coverage.hit(309);
             Object otherValue = null;
             switch (size) {  // drop through
             case 3:
+                Coverage.hit(310);
                 if (!other.containsKey(key3)) {
-                    Coverage.hit(306);
+                    Coverage.hit(311);
                     return false;
+                } else {
+                    Coverage.hit(312);
                 }
                 otherValue = other.get(key3);
                 if (!Objects.equals(value3, otherValue)) {
-                    Coverage.hit(307);
+                    Coverage.hit(313);
                     return false;
+                }  else {
+                    Coverage.hit(314);
                 }
-                Coverage.hit(308);
+                Coverage.hit(315);
             case 2:
+                Coverage.hit(316);
                 if (!other.containsKey(key2)) {
-                    Coverage.hit(309);
+                    Coverage.hit(317);
                     return false;
+                } else {
+                    Coverage.hit(318);
                 }
                 otherValue = other.get(key2);
                 if (!Objects.equals(value2, otherValue)) {
-                    Coverage.hit(310);
+                    Coverage.hit(319);
                     return false;
+                } else {
+                    Coverage.hit(320);
                 }
-                Coverage.hit(311);
+                Coverage.hit(321);
             case 1:
+                Coverage.hit(322);
                 if (!other.containsKey(key1)) {
-                    Coverage.hit(312);
+                    Coverage.hit(323);
                     return false;
+                } else {
+                    Coverage.hit(324);
                 }
                 otherValue = other.get(key1);
                 if (!Objects.equals(value1, otherValue)) {
-                    Coverage.hit(313);
+                    Coverage.hit(325);
                     return false;
+                } else {
+                    Coverage.hit(326);
                 }
-                Coverage.hit(314);
+                Coverage.hit(327);
             }
+        } else {
+            Coverage.hit(328);
         }
-        Coverage.hit(315);
+        Coverage.hit(329);
         return true;
     }
 
