@@ -385,6 +385,28 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertFalse(map1.equals(map2));
     }
 
+
+    /**
+     * Requirement: If this map and other map are not of the same size
+     * the method this.equal(other) should return false.
+     *
+     * This map contains three entries and other only contains 2 entries.
+     * When calling this.equals(other) the method should return false, since they are not of the same size
+     */
+    @Test
+    void testEquals3() {
+        final Flat3Map<K, V> map1 = new Flat3Map<>();
+        map1.put((K) "a", (V) "testA");
+        map1.put((K) "b", (V) "testB");
+        map1.put((K) "c", (V) "testC");
+
+        final Map<String, String> other = new java.util.HashMap<>();
+        map1.put((K) "a", (V) "testA");
+        map1.put((K) "b", (V) "testB");
+
+        assertFalse(map1.equals(other));
+    }
+
     @Test
     void testGet1() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
