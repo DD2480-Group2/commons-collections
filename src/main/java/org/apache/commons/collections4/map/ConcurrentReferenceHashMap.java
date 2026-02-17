@@ -53,6 +53,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.apache.commons.collections4.Coverage;
+
 /**
  * An advanced hash map supporting configurable garbage collection semantics of keys and values, optional referential-equality, full concurrency of retrievals,
  * and adjustable expected concurrency for updates.
@@ -1443,36 +1445,50 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
     private ConcurrentReferenceHashMap(int initialCapacity, final float loadFactor, int concurrencyLevel, final ReferenceType keyType,
             final ReferenceType valueType, final EnumSet<Option> options) {
         if (!(loadFactor > 0) || initialCapacity < 0 || concurrencyLevel <= 0) {
+            Coverage.hit(401);
             throw new IllegalArgumentException();
         }
+        Coverage.hit(402);
         if (concurrencyLevel > MAX_SEGMENTS) {
+            Coverage.hit(403);
             concurrencyLevel = MAX_SEGMENTS;
         }
+        Coverage.hit(404);
         // Find power-of-two sizes best matching arguments
         int sshift = 0;
         int ssize = 1;
         while (ssize < concurrencyLevel) {
+            Coverage.hit(405);
             ++sshift;
             ssize <<= 1;
         }
+        Coverage.hit(406);
         segmentShift = 32 - sshift;
         segmentMask = ssize - 1;
         this.segments = Segment.newArray(ssize);
         if (initialCapacity > MAXIMUM_CAPACITY) {
+            Coverage.hit(407);
             initialCapacity = MAXIMUM_CAPACITY;
         }
+        Coverage.hit(408);
         int c = initialCapacity / ssize;
         if (c * ssize < initialCapacity) {
+            Coverage.hit(409);
             ++c;
         }
+        Coverage.hit(410);
         int cap = 1;
         while (cap < c) {
+            Coverage.hit(411);
             cap <<= 1;
         }
+        Coverage.hit(412);
         identityComparisons = options != null && options.contains(Option.IDENTITY_COMPARISONS);
         for (int i = 0; i < this.segments.length; ++i) {
+            Coverage.hit(413);
             this.segments[i] = new Segment<>(cap, loadFactor, keyType, valueType, identityComparisons);
         }
+        Coverage.hit(414);
     }
 
     /**
