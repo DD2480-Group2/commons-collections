@@ -773,38 +773,38 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
             Object otherValue = null;
             switch (size) {  // drop through
             case 3:
-                Coverage.hit(306);
                 if (!other.containsKey(key3)) {
-                    Coverage.hit(307);
+                    Coverage.hit(306);
                     return false;
                 }
                 otherValue = other.get(key3);
                 if (!Objects.equals(value3, otherValue)) {
-                    Coverage.hit(308);
+                    Coverage.hit(307);
                     return false;
                 }
+                Coverage.hit(308);
             case 2:
-                Coverage.hit(309);
                 if (!other.containsKey(key2)) {
-                    Coverage.hit(310);
+                    Coverage.hit(309);
                     return false;
                 }
                 otherValue = other.get(key2);
                 if (!Objects.equals(value2, otherValue)) {
-                    Coverage.hit(311);
+                    Coverage.hit(310);
                     return false;
                 }
+                Coverage.hit(311);
             case 1:
-                Coverage.hit(312);
                 if (!other.containsKey(key1)) {
-                    Coverage.hit(313);
+                    Coverage.hit(312);
                     return false;
                 }
                 otherValue = other.get(key1);
                 if (!Objects.equals(value1, otherValue)) {
-                    Coverage.hit(314);
+                    Coverage.hit(313);
                     return false;
                 }
+                Coverage.hit(314);
             }
         }
         Coverage.hit(315);
