@@ -778,6 +778,62 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertNull(obj);
     }
 
+    /**
+     * Requirement: If the map contains a mapping for the null key,
+     * remove(null) should return associated value and remove the entry from the map
+     *
+     * The map contains three key-value pairs, of which the second has the null-key bound to value TWO.
+     * When calling remove(null) the function should return the value which is TWO and remove the entry
+     */
+    @Test
+    void testRemove14() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+        final Object obj;
+
+        m.put(ONE, ONE);
+        m.put(null, TWO);
+        m.put(THREE, THREE);
+
+        obj = m.remove(null);
+        assertEquals(TWO, obj);
+    }
+
+    /**
+     * Requirement: If the map contains a mapping for the null key,
+     * remove(null) should return associated value and remove the entry from the map
+     *
+     * The map contains three key-value pairs, of which the first has the null-key bound to value ONE.
+     * When calling remove(null) the function should return the value which is ONE and remove the entry.
+     */
+    @Test
+    void testRemove15() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+        final Object obj;
+
+        m.put(null, ONE);
+        m.put(TWO, TWO);
+        m.put(THREE, THREE);
+
+        obj = m.remove(null);
+        assertEquals(ONE, obj);
+    }
+
+    /**
+     * Requirement: If the map does not contain a mapping for a specific key,
+     * remove(specific_key) should return null and not affect size.
+     *
+     * The map contains 1 key-value pairs, ONE to ONE.
+     * When calling remove(TWO) the function should return null, since no entry is present with that key.
+     */
+    @Test
+    void testRemove16() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+        m.put(ONE, ONE);
+
+        assertNull(m.remove(TWO));
+        assertEquals(1, m.size());
+    }
+
     @Test
     void testSerialization0() throws Exception {
         final Flat3Map<K, V> map = makeObject();
