@@ -1056,7 +1056,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
     @Override
     public V remove(final Object key) {
         if (delegateMap != null) {
-            Coverage.hit(101);
+                Coverage.hit(101);
             return delegateMap.remove(key);
         }
         Coverage.hit(102);
