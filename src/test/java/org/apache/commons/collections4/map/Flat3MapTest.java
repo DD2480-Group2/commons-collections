@@ -407,6 +407,108 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertFalse(map1.equals(other));
     }
 
+    /**
+     * Requirement: The equals(Object) method should return false if
+     * the other map is missing a key that is present in this map.
+     *
+     * <p>
+     * This test creates two Flat3Map instances which differ only in
+     * key3. When equals(Object) checks whether the other map contains
+     * key3 by evaluating the condition (!other.containsKey(key3)),
+     * the method should return false.
+     * </p>
+     */
+    @Test
+    void testEquals4() {
+        final Flat3Map<K, V> map1 = makeObject();
+        map1.put((K) "a", (V) "testA");
+        map1.put((K) "b", (V) "testB");
+        map1.put((K) "c", (V) "testC");
+
+        final Flat3Map<K, V> map2 = makeObject();
+        map2.put((K) "a", (V) "testA");
+        map2.put((K) "b", (V) "testB");
+        map2.put((K) "not_c", (V) "testC");
+
+        assertFalse(map1.equals(map2));
+    }
+
+    /**
+     * Requirement: The equals(Object) method should return false if
+     * a key in the other map is mapped to a different value than
+     * the one present in this map.
+     *
+     * <p>
+     * This test creates two Flat3Map instances which differ only in
+     * the value mapped to key3. When equals(Object) checks whether
+     * key3 in the other map is mapped to the same value as its own
+     * by evaluating the condition
+     * (!Objects.equals(value3, otherValue)), the method should
+     * return false.
+     * </p>
+     */
+    @Test
+    void testEquals5() {
+        final Flat3Map<K, V> map1 = makeObject();
+        map1.put((K) "a", (V) "testA");
+        map1.put((K) "b", (V) "testB");
+        map1.put((K) "c", (V) "testC");
+
+        final Flat3Map<K, V> map2 = makeObject();
+        map2.put((K) "a", (V) "testA");
+        map2.put((K) "b", (V) "testB");
+        map2.put((K) "c", (V) "not_testC");
+
+        assertFalse(map1.equals(map2));
+    }
+
+    /**
+     * Requirement: The equals(Object) method should return false if
+     * the other map is missing a key that is present in this map.
+     *
+     * <p>
+     * This test creates two Flat3Map instances which differ only in
+     * key1. When equals(Object) checks whether the other map contains
+     * key1 by evaluating the condition (!other.containsKey(key1)),
+     * the method should return false.
+     * </p>
+     */
+    @Test
+    void testEquals6() {
+        final Flat3Map<K, V> map1 = makeObject();
+        map1.put((K) "a", (V) "testA");
+
+        final Flat3Map<K, V> map2 = makeObject();
+        map2.put((K) "not_a", (V) "testA");
+
+        assertFalse(map1.equals(map2));
+    }
+
+    /**
+     * Requirement: The equals(Object) method should return false if
+     * a key in the other map is mapped to a different value than
+     * the one present in this map.
+     *
+     * <p>
+     * This test creates two Flat3Map instances which differ only in
+     * the value mapped to key1. When equals(Object) checks whether
+     * key1 in the other map is mapped to the same value as its own
+     * by evaluating the condition
+     * (!Objects.equals(value1, otherValue)), the method should
+     * return false.
+     * </p>
+     */
+    @Test
+    void testEquals7() {
+        final Flat3Map<K, V> map1 = makeObject();
+        map1.put((K) "a", (V) "testA");
+
+        final Flat3Map<K, V> map2 = makeObject();
+        map2.put((K) "a", (V) "not_testA");
+
+        assertFalse(map1.equals(map2));
+    }
+
     @Test
     void testGet1() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
