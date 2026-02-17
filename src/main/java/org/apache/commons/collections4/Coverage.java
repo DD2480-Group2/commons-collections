@@ -15,5 +15,15 @@ public class Coverage {
         }
     }
 
+    private static void reportAll() {
+        System.out.println("\n==== BRANCH COVERAGE ====");
 
+        System.out.print("HIT: ");
+        for (int i = 0; i < coverage_array.length; i++) {
+            if (coverage_array[i]) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println("=============================\n");
+    }
 }
