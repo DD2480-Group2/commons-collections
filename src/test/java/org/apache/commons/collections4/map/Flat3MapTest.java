@@ -779,8 +779,11 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
     }
 
     /**
-     * Contract: If the map contains a mapping for null key, remove(null) should return the mapped value and remove the entry.
-     * When param key == null, size equals 3, and the key2 field contains null, value2 should be returned.
+     * Requirement: If the map contains a mapping for the null key,
+     * remove(null) should return associated value and remove the entry from the map
+     *
+     * The map contains three key-value pairs, of which the second has the null-key bound to value TWO.
+     * When calling remove(null) the function should return the value which is TWO and remove the entry
      */
     @Test
     void testRemove14() {
@@ -796,8 +799,11 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
     }
 
     /**
-     * Contract: If the map contains a mapping for null key, remove(null) should return the mapped value and remove the entry.
-     * When param key == null, size equals 3, and the key1 field contains null, value1 should be returned.
+     * Requirement: If the map contains a mapping for the null key,
+     * remove(null) should return associated value and remove the entry from the map
+     *
+     * The map contains three key-value pairs, of which the first has the null-key bound to value ONE.
+     * When calling remove(null) the function should return the value which is ONE and remove the entry.
      */
     @Test
     void testRemove15() {
