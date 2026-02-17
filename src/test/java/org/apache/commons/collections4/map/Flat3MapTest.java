@@ -818,6 +818,22 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertEquals(ONE, obj);
     }
 
+    /**
+     * Requirement: If the map does not contain a mapping for a specific key,
+     * remove(specific_key) should return null and not affect size.
+     *
+     * The map contains 1 key-value pairs, ONE to ONE.
+     * When calling remove(TWO) the function should return null, since no entry is present with that key.
+     */
+    @Test
+    void testRemove_case1_hashMismatch() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+        m.put(ONE, ONE);
+
+        assertNull(m.remove(TWO));
+        assertEquals(1, m.size());
+    }
+
     @Test
     void testSerialization0() throws Exception {
         final Flat3Map<K, V> map = makeObject();
