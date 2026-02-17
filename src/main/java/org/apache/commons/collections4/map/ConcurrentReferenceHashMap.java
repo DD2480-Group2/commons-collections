@@ -1447,13 +1447,15 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         if (!(loadFactor > 0) || initialCapacity < 0 || concurrencyLevel <= 0) {
             Coverage.hit(401);
             throw new IllegalArgumentException();
+        } else {
+            Coverage.hit(402);
         }
-        Coverage.hit(402);
         if (concurrencyLevel > MAX_SEGMENTS) {
             Coverage.hit(403);
             concurrencyLevel = MAX_SEGMENTS;
+        } else {
+            Coverage.hit(404);
         }
-        Coverage.hit(404);
         // Find power-of-two sizes best matching arguments
         int sshift = 0;
         int ssize = 1;
@@ -1469,14 +1471,16 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         if (initialCapacity > MAXIMUM_CAPACITY) {
             Coverage.hit(407);
             initialCapacity = MAXIMUM_CAPACITY;
+        } else {
+            Coverage.hit(408);
         }
-        Coverage.hit(408);
         int c = initialCapacity / ssize;
         if (c * ssize < initialCapacity) {
             Coverage.hit(409);
             ++c;
+        } else {
+            Coverage.hit(410);
         }
-        Coverage.hit(410);
         int cap = 1;
         while (cap < c) {
             Coverage.hit(411);
