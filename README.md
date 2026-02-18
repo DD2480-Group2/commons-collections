@@ -108,10 +108,17 @@ To reduce the method’s cyclomatic complexity, the refactoring would primarily 
 
 The cyclomatic complexity of the method could be further reduced by extracting the individual if-statements into separate, or a single, new methods, however, the benefits of doing so may be questioned when taking for example readability into consideration.
 
-### Function 4: ConcurrentReferenceHashMap 
+### Function 4: ConcurrentReferenceHashMap (Adam, aiming for P+)
 This method has high complexity with a CC of 11 which is close to being a safe/medium complexity if we draw the line at 10. A lot of the complexity comes from ensuring the parameters are correct (the first line is an if-statement making sure 3 of the parameters are greater than or equal to 0 or 1 with “||”). There are also some loops and if statements that caps the value of concurrencyLevel and initialCapacity. 
 
 To lower the CC the if statements to cap the value of the parameters was replaced with a Math.min() function and since 2 of the loops was to check the smallest power of 2 that was greater or equal to a value, it was turned into a helper function called ceilingPowerOfTwo with a while loop (CC = 2). This along with replacing a if-statement that rounded up a fraction resulted in the function having a CC of 6, a decrease by 45%.  
+
+Before:
+<img width="1473" height="127" alt="image" src="https://github.com/user-attachments/assets/d45418d1-4604-473e-8faa-2d031edf6859" />
+
+After:
+<img width="1457" height="163" alt="image" src="https://github.com/user-attachments/assets/c135fb21-2b22-4b2a-bef0-b041f6664dd8" />
+
 
 ### Function 5:  
 
@@ -324,6 +331,13 @@ void testEquals7() {
 ```
 
 #### Adam:
+Test coverage before:
+<img width="1038" height="788" alt="image" src="https://github.com/user-attachments/assets/77f74493-220c-4821-8061-6c4ac704c429" />
+
+Test coverage after:
+<img width="1038" height="670" alt="image" src="https://github.com/user-attachments/assets/443b9954-f940-4fec-97a6-fd00749ce8fd" />
+
+Tests comments:
 ```
 /**
 * test that a negative concurrencyLevel throws the exeption IllegalArgumentException
