@@ -128,7 +128,7 @@ To lower the CC the if statements to cap the value of the parameters was replace
 
 **After**
 
-![equals method refactoring after](https://github.com/DD2480-Group2/commons-collections/blob/report/report-resources/equals_coverage_after.png)
+![equals method refactoring after](https://github.com/DD2480-Group2/commons-collections/blob/report/report-resources/equals_refactor_after.png)
 
 Our branch for refactored functions:
 [Development-Refactoring](https://github.com/DD2480-Group2/commons-collections/tree/Development-Refactoring)
