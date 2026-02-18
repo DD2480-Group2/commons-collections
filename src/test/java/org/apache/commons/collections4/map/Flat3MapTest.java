@@ -559,6 +559,27 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertEquals(ONE, m.get(ONE));
     }
 
+    /**
+     * Tests that map is correctly delegated when size extends beyond three, and preserves elements.
+     */
+    @Test
+    void testPut7() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        m.put(TWO, TWO);
+        m.put(THREE, THREE);
+
+        m.put(null, ONE);
+        assertEquals(ONE, m.get(null));
+
+        assertEquals(ONE, m.get(ONE));
+        assertEquals(TWO, m.get(TWO));
+        assertEquals(THREE, m.get(THREE));
+
+        assertEquals(4, m.size());
+    }
+
     @Test
     void testRemove1() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
