@@ -968,50 +968,92 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
     @Override
     public V put(final K key, final V value) {
         if (delegateMap != null) {
+            Coverage.hit(201);
             return delegateMap.put(key, value);
         }
         // change existing mapping
         if (key == null) {
+            Coverage.hit(202);
             switch (size) {  // drop through
             case 3:
+                Coverage.hit(203);
                 if (key3 == null) {
+                    Coverage.hit(204);
                     final V old = value3;
                     value3 = value;
                     return old;
                 }
             case 2:
+                Coverage.hit(205);
                 if (key2 == null) {
+                    Coverage.hit(206);
                     final V old = value2;
                     value2 = value;
                     return old;
                 }
             case 1:
+                Coverage.hit(207);
                 if (key1 == null) {
+                    Coverage.hit(208);
                     final V old = value1;
                     value1 = value;
                     return old;
                 }
             }
         } else if (size > 0) {
+            Coverage.hit(209);
             final int hashCode = key.hashCode();
             switch (size) {  // drop through
             case 3:
-                if (hash3 == hashCode && key.equals(key3)) {
-                    final V old = value3;
-                    value3 = value;
-                    return old;
+                Coverage.hit(210);
+                if (hash3 == hashCode) {
+                    Coverage.hit(211);
+                    if(key.equals(key3)) {
+                        Coverage.hit(212);
+                        final V old = value3;
+                        value3 = value;
+                        return old;
+                    }
+                    else {
+                        Coverage.hit(213);
+                    }
+                }
+                else {
+                    Coverage.hit(214);
                 }
             case 2:
-                if (hash2 == hashCode && key.equals(key2)) {
-                    final V old = value2;
-                    value2 = value;
-                    return old;
+                Coverage.hit(215);
+                if (hash2 == hashCode) {
+                    Coverage.hit(216);
+                    if(key.equals(key2)) {
+                        Coverage.hit(217);
+                        final V old = value2;
+                        value2 = value;
+                        return old;
+                    }
+                    else {
+                        Coverage.hit(218);
+                    }
+                }
+                else {
+                    Coverage.hit(219);
                 }
             case 1:
-                if (hash1 == hashCode && key.equals(key1)) {
-                    final V old = value1;
-                    value1 = value;
-                    return old;
+                Coverage.hit(220);
+                if (hash1 == hashCode) {
+                    Coverage.hit(221);
+                    if(key.equals(key1)) {
+                        Coverage.hit(222);
+                        final V old = value1;
+                        value1 = value;
+                        return old;
+                    }
+                    else {
+                        Coverage.hit(223);
+                    }
+                }
+                else {
+                    Coverage.hit(224);
                 }
             }
         }
