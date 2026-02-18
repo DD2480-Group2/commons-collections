@@ -605,6 +605,30 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertEquals(4, m.size());
     }
 
+    /**
+     * Tests the condition when a hash collision occurs between two distinct strings.
+     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
+     *
+     */
+    @Test
+    void testPut9() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        m.put("FB", TWO);
+        m.put(THREE, THREE);
+
+        assertEquals("FB".hashCode(), "Ea".hashCode()); // Known collision
+        assertNotEquals("FB", "EA");
+
+        final Object old = m.put("Ea", Integer.valueOf(4)); // Triggers DelegateMap
+
+        assertNull(old); // Since not existing update
+        assertEquals(4, m.get("Ea"));
+        assertEquals(TWO, m.get("FB"));
+        assertEquals(4, m.size());
+    }
+
     @Test
     void testRemove1() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
