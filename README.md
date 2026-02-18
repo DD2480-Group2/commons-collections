@@ -133,7 +133,8 @@ We used JaCoCo as our automated coverage measurement tool. JoCoCo was already in
  
 JaCoCo then produced a HTML report that provided information about instruction coverage, branch coverage and other key-values for analyzing the repo both on class level and on method level.
 
-[FIGURE PLACEHOLDER]
+<img width="906" height="412" alt="image" src="https://github.com/user-attachments/assets/b2748d22-448c-4471-8883-644861f91d14" />
+
 
 ### Your own coverage tool
 We implemented a simple manual branch coverage tool by instrumenting the selected high CC functions. Each branch that gets explored contains a call to ```Coverage.hit(ID)``` which sets a boolean variable in place ID to true, signifying that we have explored that branch. After the test has run all true values will output their index, showing what branches were explored and what branches that were not covered.
