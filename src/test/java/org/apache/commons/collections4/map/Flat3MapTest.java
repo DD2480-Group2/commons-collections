@@ -400,7 +400,7 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         map1.put((K) "b", (V) "testB");
         map1.put((K) "c", (V) "testC");
 
-        final Map<K, V> other = new java.util.HashMap<>();
+        final Flat3Map<K, V> other = new Flat3Map<>();
         other.put((K) "a", (V) "testA");
         other.put((K) "b", (V) "testB");
 
