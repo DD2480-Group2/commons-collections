@@ -1445,34 +1445,37 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         if (!(loadFactor > 0) || initialCapacity < 0 || concurrencyLevel <= 0) {
             throw new IllegalArgumentException();
         }
-        if (concurrencyLevel > MAX_SEGMENTS) {
-            concurrencyLevel = MAX_SEGMENTS;
-        }
+        concurrencyLevel = Math.min(concurrencyLevel, MAX_SEGMENTS);
         // Find power-of-two sizes best matching arguments
-        int sshift = 0;
-        int ssize = 1;
-        while (ssize < concurrencyLevel) {
-            ++sshift;
-            ssize <<= 1;
-        }
-        segmentShift = 32 - sshift;
+        int ssize = ceilingPowerOfTwo(concurrencyLevel);
+
+        segmentShift = 1 + Integer.numberOfLeadingZeros(ssize);
         segmentMask = ssize - 1;
         this.segments = Segment.newArray(ssize);
-        if (initialCapacity > MAXIMUM_CAPACITY) {
-            initialCapacity = MAXIMUM_CAPACITY;
-        }
-        int c = initialCapacity / ssize;
-        if (c * ssize < initialCapacity) {
-            ++c;
-        }
-        int cap = 1;
-        while (cap < c) {
-            cap <<= 1;
-        }
+        initialCapacity = Math.min(initialCapacity, MAXIMUM_CAPACITY);
+        int c = (initialCapacity + ssize -1) / ssize;
+        int cap = ceilingPowerOfTwo(c);
         identityComparisons = options != null && options.contains(Option.IDENTITY_COMPARISONS);
         for (int i = 0; i < this.segments.length; ++i) {
             this.segments[i] = new Segment<>(cap, loadFactor, keyType, valueType, identityComparisons);
         }
+    }
+    /**
+     * returns the smallest power of two that is greater than or equal to value
+     * <p>
+     * This is commonly used to ensure internal table sizes or concurrency 
+     * segments are optimized for bitwise masking operations.
+     * </p>
+     * @param value the threshold to meet or exceed
+     * @return the smallest power of two >= {@code value}. Returns 1 if 
+     * {@code value} is less than or equal to 1.
+     */
+    private int ceilingPowerOfTwo(int value) {
+        int pow = 1;
+        while (pow < value) {
+            pow <<= 1;
+        }
+        return pow;
     }
 
     /**
