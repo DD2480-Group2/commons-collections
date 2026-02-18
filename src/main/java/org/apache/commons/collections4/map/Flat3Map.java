@@ -934,51 +934,80 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         }
         // change existing mapping
         if (key == null) {
-            switch (size) {  // drop through
+            V old = updateIfNullKeyFound(size, value);
+            if (old != null) {
+                return old;
+            }
+        }
+        else if (size > 0) {
+            final int hashCode = key.hashCode();
+            V old = updateIfKeyMatches(size, key, value, hashCode);
+            if (old != null) {
+                return old;
+            }
+        }
+
+        // add new mapping
+        if (convertedToDelegateOnInsert(key, value)) return null;
+        size++;
+        return null;
+    }
+
+    private V updateIfNullKeyFound(int size, V newValue) {
+        switch (size) {  // drop through
             case 3:
                 if (key3 == null) {
                     final V old = value3;
-                    value3 = value;
+                    value3 = newValue;
                     return old;
                 }
             case 2:
                 if (key2 == null) {
                     final V old = value2;
-                    value2 = value;
+                    value2 = newValue;
                     return old;
                 }
             case 1:
                 if (key1 == null) {
                     final V old = value1;
-                    value1 = value;
+                    value1 = newValue;
                     return old;
                 }
-            }
-        } else if (size > 0) {
-            final int hashCode = key.hashCode();
-            switch (size) {  // drop through
+        }
+        return null;
+    }
+
+    private V updateIfKeyMatches(int size, K key, V value, int hashCode) {
+        switch (size) {  // drop through
             case 3:
-                if (hash3 == hashCode && key.equals(key3)) {
+                if (keysAreEqual(key, hashCode, key3, hash3)) {
                     final V old = value3;
                     value3 = value;
                     return old;
                 }
             case 2:
-                if (hash2 == hashCode && key.equals(key2)) {
+                if (keysAreEqual(key, hashCode, key2, hash2)) {
                     final V old = value2;
                     value2 = value;
                     return old;
                 }
             case 1:
-                if (hash1 == hashCode && key.equals(key1)) {
+                if (keysAreEqual(key, hashCode, key1, hash1)) {
                     final V old = value1;
                     value1 = value;
                     return old;
                 }
-            }
         }
+        return null;
+    }
 
-        // add new mapping
+
+
+    private boolean keysAreEqual(K key, int hashCode, K keyParam, int hashParam) {
+        return hashParam == hashCode && key.equals(keyParam);
+    }
+
+    private boolean convertedToDelegateOnInsert(K key, V value) {
         switch (size) {
         case 2:
             hash3 = key == null ? 0 : key.hashCode();
@@ -998,10 +1027,9 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         default:
             convertToMap();
             delegateMap.put(key, value);
-            return null;
+            return true;
         }
-        size++;
-        return null;
+        return false;
     }
 
     /**
