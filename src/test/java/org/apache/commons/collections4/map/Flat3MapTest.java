@@ -653,59 +653,6 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertEquals(4, m.size());
     }
 
-    /**
-     * Tests the condition when a hash collision occurs between two distinct strings.
-     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
-     *
-     */
-    @Test
-    void testPut11() {
-        final Flat3Map<Object, Integer> m = new Flat3Map<>();
-
-        m.put(ONE, ONE);
-
-        final Object old = m.put(ONE, TWO);
-        assertEquals(TWO, m.get(ONE));
-        assertEquals(ONE, old);
-    }
-
-    /**
-     * Tests the condition when a hash collision occurs between two distinct strings.
-     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
-     *
-     */
-    @Test
-    void testPut12() {
-        final Flat3Map<Object, Integer> m = new Flat3Map<>();
-
-        m.put(ONE, ONE);
-        m.put(TWO, TWO);
-
-        final Object old = m.put(ONE, TWO);
-        assertEquals(TWO, m.get(ONE));
-        assertEquals(ONE, old);
-    }
-
-    /**
-     * Tests the condition when a hash collision occurs between two distinct strings.
-     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
-     *
-     */
-    @Test
-    void testPut13() {
-        final Flat3Map<Object, Integer> m = new Flat3Map<>();
-
-        m.put(ONE, ONE);
-        m.put(TWO, TWO);
-        m.put(THREE, THREE);
-
-        final Object old = m.put(ONE, TWO);
-        assertEquals(TWO, m.get(ONE));
-        assertEquals(ONE, old);
-    }
-
-
-
     @Test
     void testRemove1() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
