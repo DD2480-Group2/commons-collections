@@ -544,6 +544,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
     /** Map, used while in delegate mode */
     private transient AbstractHashedMap<K, V> delegateMap;
 
+    /** Value for old value, used while in flat mode*/
     private transient V oldValue;
 
     /**
