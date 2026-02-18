@@ -934,14 +934,14 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         }
         // change existing mapping
         if (key == null) {
-            V old = updateIfNullKeyFound(size, value);
+            V old = updateIfNullKeyFound(value);
             if (old != null) {
                 return old;
             }
         }
         else if (size > 0) {
             final int hashCode = key.hashCode();
-            V old = updateIfKeyMatches(size, key, value, hashCode);
+            V old = updateIfKeyMatches(key, value, hashCode);
             if (old != null) {
                 return old;
             }
@@ -953,7 +953,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         return null;
     }
 
-    private V updateIfNullKeyFound(int size, V newValue) {
+    private V updateIfNullKeyFound(V newValue) {
         switch (size) {  // drop through
             case 3:
                 if (key3 == null) {
@@ -977,7 +977,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         return null;
     }
 
-    private V updateIfKeyMatches(int size, K key, V value, int hashCode) {
+    private V updateIfKeyMatches(K key, V value, int hashCode) {
         switch (size) {  // drop through
             case 3:
                 if (keysAreEqual(key, hashCode, key3, hash3)) {
