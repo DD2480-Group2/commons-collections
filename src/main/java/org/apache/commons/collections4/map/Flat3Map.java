@@ -844,7 +844,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
      */
     @Override
     public V get(final Object key) {
-        if (delegateMap != null) {
+        if (delegateMap != null) { 
             Coverage.hit(501);
             return delegateMap.get(key);
         } else {
@@ -907,8 +907,9 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                     Coverage.hit(523);
                 }
             }
+        } else {
+            Coverage.hit(505);
         }
-        Coverage.hit(505);
         return null;
     }
 
