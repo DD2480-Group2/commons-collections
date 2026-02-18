@@ -395,12 +395,12 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
      */
     @Test
     void testEquals3() {
-        final Flat3Map<K, V> map1 = new Flat3Map<>();
+        final Flat3Map<K, V> map1 = makeObject();
         map1.put((K) "a", (V) "testA");
         map1.put((K) "b", (V) "testB");
         map1.put((K) "c", (V) "testC");
 
-        final Flat3Map<K, V> other = new Flat3Map<>();
+        final Flat3Map<K, V> other = makeObject();
         other.put((K) "a", (V) "testA");
         other.put((K) "b", (V) "testB");
 
