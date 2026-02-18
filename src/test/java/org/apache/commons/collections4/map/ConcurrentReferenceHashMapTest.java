@@ -18,6 +18,7 @@
 package org.apache.commons.collections4.map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.EnumSet;
@@ -51,5 +52,58 @@ class ConcurrentReferenceHashMapTest {
         assertTrue(map.containsKey(1));
         assertFalse(map.containsKey(2));
 
+    }
+
+    /**
+     * test that a negative concurrencyLevel throws the exeption IllegalArgumentException
+     */
+    @Test
+    void concurrentReferenceHashMapThrowExeptionWhenConcurrencyLevelIsNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            ConcurrentReferenceHashMap.builder()
+                    .setConcurrencyLevel(-1)
+                    .get();
+        });
+    }
+
+    /**
+     * test that a negative initialCapacity throws the exeption IllegalArgumentException
+     */
+    @Test
+    void concurrentReferenceHashMapThrowExeptionWhenInitialCapacityIsNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            ConcurrentReferenceHashMap.builder()
+                    .setInitialCapacity(-1)
+                    .get();
+        });
+    }
+
+    /**
+     * test that loadFactor equals zero results in the thrown exeption IllegalArgumentException
+     */
+    @Test
+    void concurrentReferenceHashMapThrowExeptionWhenLoadFactorIsZero() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            ConcurrentReferenceHashMap.builder()
+                    .setLoadFactor(0)
+                    .get();
+        });
+    }
+
+    /**
+     * test that ConcurrentReferenceHashMap limits concurrencyLevel to max (1 << 16) if it is set to something higher than that
+     */
+    @Test
+    void concurrentReferenceHashMapLimitsConcurrencyLevel() {
+        int overMax = (1 << 16) + 1;
+        int max = (1 << 16);
+        final Map<Integer, String> overMaxMap = ConcurrentReferenceHashMap.<Integer, String>builder()
+                .setConcurrencyLevel(overMax)
+                .get();
+        final Map<Integer, String> maxMap = ConcurrentReferenceHashMap.<Integer, String>builder()
+                .setConcurrencyLevel(max)
+                .get();
+
+        assertTrue(overMaxMap.equals(maxMap));
     }
 }
