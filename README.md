@@ -223,11 +223,11 @@ The branch coverage analysis of the `equals(Object)` method before new tests wer
 
 The following was the branch coverage of the method as reported by JaCoCo before new tests were added:
 
-[FIGURE PLACEHOLDER]
+![equals method coverage before](https://github.com/DD2480-Group2/commons-collections/blob/report/report-resources/equals_coverage_before.png)
 
 After implementing new tests, including the test created by Kevin Löv, the following branch coverage was achieved:
 
-[FIGURE PLACEHOLDER]
+![equals method coverage after](https://github.com/DD2480-Group2/commons-collections/blob/report/report-resources/equals_coverage_after.png)
 
 The following JavaDoc comments are related to the 4 test methods I wrote, addressing the latter branches that were previously not covered:
 
