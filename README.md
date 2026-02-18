@@ -165,7 +165,10 @@ but we can not explore some of the branches that JaCoCo explores through conditi
 #### Kevin:
 The parts of the remove method that were not covered through the original tests were two checks for when the Map was full (3 elements) and we try to remove either key 1 or key 2 when the key itself is null. Below we can see the branch coverage for the remove method:
 
-[FIGURE PLACEHOLDER]
+<img width="906" height="89" alt="image" src="https://github.com/user-attachments/assets/7a2f737d-e494-47ed-869f-aba476500cec" />
+and after:
+<img width="912" height="86" alt="image" src="https://github.com/user-attachments/assets/64056e0d-83bd-4478-b186-ea76a6aece7d" />
+
 
 Javadocs for the two methods covering the case above can be found below.
 ```
@@ -340,11 +343,13 @@ void testEquals7() {
 
 ### Report of old coverage:
 
-[FIGURE PLACEHOLDER]
+<img width="1046" height="206" alt="image" src="https://github.com/user-attachments/assets/5e025521-f4db-41ee-b256-0527e0eab51f" />
+
 
 ### Report of new coverage:
 
-[FIGURE PLACEHOLDER]
+<img width="1049" height="231" alt="image" src="https://github.com/user-attachments/assets/21f63617-f165-420e-b130-a91eaea0af74" />
+
 
 ### Test cases added:
 
