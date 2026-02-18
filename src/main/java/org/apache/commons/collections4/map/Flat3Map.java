@@ -767,36 +767,35 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         if (size != other.size()) {
             return false;
         }
+        return entriesEqual(other);
+    }
+
+    private boolean entriesEqual(Map<?, ?> other) {
         if (size > 0) {
-            Object otherValue = null;
-            switch (size) {  // drop through
-            case 3:
-                if (!other.containsKey(key3)) {
-                    return false;
-                }
-                otherValue = other.get(key3);
-                if (!Objects.equals(value3, otherValue)) {
-                    return false;
-                }
-            case 2:
-                if (!other.containsKey(key2)) {
-                    return false;
-                }
-                otherValue = other.get(key2);
-                if (!Objects.equals(value2, otherValue)) {
-                    return false;
-                }
-            case 1:
-                if (!other.containsKey(key1)) {
-                    return false;
-                }
-                otherValue = other.get(key1);
-                if (!Objects.equals(value1, otherValue)) {
-                    return false;
-                }
+            switch (size) {
+                case 3:
+                    if (!entryEquals(other, key3, value3)) {
+                        return false;
+                    }
+                case 2:
+                    if (!entryEquals(other, key2, value2)) {
+                        return false;
+                    }
+                case 1:
+                    if (!entryEquals(other, key1, value1)) {
+                        return false;
+                    }
             }
         }
         return true;
+    }
+
+    private boolean entryEquals(final Map<?, ?> other, Object key, Object value) {
+        if (!other.containsKey(key)) {
+            return false;
+        }
+        Object otherValue = other.get(key);
+        return Objects.equals(value, otherValue);
     }
 
     /**
