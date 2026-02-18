@@ -16,6 +16,7 @@
  */
 package org.apache.commons.collections4.map;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -577,6 +578,30 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertEquals(TWO, m.get(TWO));
         assertEquals(THREE, m.get(THREE));
 
+        assertEquals(4, m.size());
+    }
+
+    /**
+     * Tests the condition when a hash collision occurs between two distinct strings.
+     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
+     *
+     */
+    @Test
+    void testPut8() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        m.put(TWO, TWO);
+        m.put("FB", THREE);
+
+        assertEquals("FB".hashCode(), "Ea".hashCode()); // Known collision
+        assertNotEquals("FB", "EA");
+
+        final Object old = m.put("Ea", Integer.valueOf(4)); // Triggers DelegateMap
+
+        assertNull(old); // Since not existing update
+        assertEquals(4, m.get("Ea"));
+        assertEquals(THREE, m.get("FB"));
         assertEquals(4, m.size());
     }
 
