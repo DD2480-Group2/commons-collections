@@ -16,6 +16,7 @@
  */
 package org.apache.commons.collections4.map;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -681,6 +682,99 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         final Object old = m.put(ONE, ONE);
         assertEquals(THREE, old);
         assertEquals(ONE, m.get(ONE));
+    }
+
+    /**
+     * Tests that map is correctly delegated when size extends beyond three, and preserves elements.
+     */
+    @Test
+    void testPut7() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        m.put(TWO, TWO);
+        m.put(THREE, THREE);
+
+        m.put(null, ONE);
+        assertEquals(ONE, m.get(null));
+
+        assertEquals(ONE, m.get(ONE));
+        assertEquals(TWO, m.get(TWO));
+        assertEquals(THREE, m.get(THREE));
+
+        assertEquals(4, m.size());
+    }
+
+    /**
+     * Tests the condition when a hash collision occurs between two distinct strings.
+     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
+     *
+     */
+    @Test
+    void testPut8() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        m.put(TWO, TWO);
+        m.put("FB", THREE);
+
+        assertEquals("FB".hashCode(), "Ea".hashCode()); // Known collision
+        assertNotEquals("FB", "EA");
+
+        final Object old = m.put("Ea", Integer.valueOf(4)); // Triggers DelegateMap
+
+        assertNull(old); // Since not existing update
+        assertEquals(4, m.get("Ea"));
+        assertEquals(THREE, m.get("FB"));
+        assertEquals(4, m.size());
+    }
+
+    /**
+     * Tests the condition when a hash collision occurs between two distinct strings.
+     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
+     *
+     */
+    @Test
+    void testPut9() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        m.put("FB", TWO);
+        m.put(THREE, THREE);
+
+        assertEquals("FB".hashCode(), "Ea".hashCode()); // Known collision
+        assertNotEquals("FB", "EA");
+
+        final Object old = m.put("Ea", Integer.valueOf(4)); // Triggers DelegateMap
+
+        assertNull(old); // Since not existing update
+        assertEquals(4, m.get("Ea"));
+        assertEquals(TWO, m.get("FB"));
+        assertEquals(4, m.size());
+    }
+
+    /**
+     * Tests the condition when a hash collision occurs between two distinct strings.
+     * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
+     *
+     */
+    @Test
+    void testPut10() {
+        final Flat3Map<Object, Integer> m = new Flat3Map<>();
+
+        m.put("FB", ONE);
+        m.put(TWO, TWO);
+        m.put(THREE, THREE);
+
+        assertEquals("FB".hashCode(), "Ea".hashCode()); // Known collision
+        assertNotEquals("FB", "EA");
+
+        final Object old = m.put("Ea", Integer.valueOf(4)); // Triggers DelegateMap
+
+        assertNull(old); // Since not existing update
+        assertEquals(4, m.get("Ea"));
+        assertEquals(ONE, m.get("FB"));
+        assertEquals(4, m.size());
     }
 
     @Test
