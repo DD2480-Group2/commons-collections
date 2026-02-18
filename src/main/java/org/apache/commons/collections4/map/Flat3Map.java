@@ -811,7 +811,14 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
             return delegateMap.get(key);
         }
         if (key == null) {
-            switch (size) {
+            return getNullKey();
+        } else {
+            return getNonNullKey(key, key.hashCode());
+        }
+    }
+
+    private V getNullKey(){
+        switch (size) {
             // drop through
             case 3:
                 if (key3 == null) {
@@ -825,10 +832,12 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                 if (key1 == null) {
                     return value1;
                 }
-            }
-        } else if (size > 0) {
-            final int hashCode = key.hashCode();
-            switch (size) {
+        }
+        return null;
+    }
+
+    private V getNonNullKey(Object key, int hashCode){
+        switch (size) {
             // drop through
             case 3:
                 if (hash3 == hashCode && key.equals(key3)) {
@@ -842,10 +851,10 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
                 if (hash1 == hashCode && key.equals(key1)) {
                     return value1;
                 }
-            }
         }
         return null;
     }
+
 
     /**
      * Gets the standard Map hashCode.
