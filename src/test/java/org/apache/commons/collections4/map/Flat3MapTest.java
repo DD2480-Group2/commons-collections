@@ -98,6 +98,7 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
     private static final Integer ONE = Integer.valueOf(1);
     private static final Integer TWO = Integer.valueOf(2);
     private static final Integer THREE = Integer.valueOf(3);
+    private static final Integer FOUR = Integer.valueOf(4);
     private static final String TEN = "10";
     private static final String TWENTY = "20";
 
@@ -417,6 +418,38 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         obj = m.get(null);
         assertSame(THREE, obj);
     }
+
+    @Test
+    void testGet4() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);                 // size=1, key1 != null
+        assertNull(m.get(null));         // goes into key==null switch, hits 514
+    }
+
+    @Test
+    void testGet5() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+
+        assertNull(m.get(ONE));          // hits 505
+    }
+
+    @Test
+    void testGet6() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        assertSame(ONE, m.get(ONE));     // hits 504, then 521 then 522
+    }
+
+    @Test
+    void testGet7() {
+        final Flat3Map<Integer, Integer> m = new Flat3Map<>();
+
+        m.put(ONE, ONE);
+        assertNull(m.get(TWO));          // hits 523
+    }
+
 
     @Test
     @SuppressWarnings("unchecked")
