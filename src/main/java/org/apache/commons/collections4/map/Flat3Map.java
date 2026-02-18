@@ -578,6 +578,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
             key1 = key2 = key3 = null;
             value1 = value2 = value3 = null;
         }
+        oldValue = null;
     }
 
     /**
