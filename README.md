@@ -117,6 +117,9 @@ To lower the CC the if statements to cap the value of the parameters was replace
 
 ### Carried out refactoring (optional, P+):
 
+#### Kevin
+<img width="912" height="61" alt="image" src="https://github.com/user-attachments/assets/3ac9c040-a559-4264-8f0e-73f8548ce84c" />
+
 #### Samuel
 
 **Before**
@@ -139,7 +142,8 @@ We used JaCoCo as our automated coverage measurement tool. JoCoCo was already in
  
 JaCoCo then produced a HTML report that provided information about instruction coverage, branch coverage and other key-values for analyzing the repo both on class level and on method level.
 
-[FIGURE PLACEHOLDER]
+<img width="906" height="412" alt="image" src="https://github.com/user-attachments/assets/b2748d22-448c-4471-8883-644861f91d14" />
+
 
 ### Your own coverage tool
 We implemented a simple manual branch coverage tool by instrumenting the selected high CC functions. Each branch that gets explored contains a call to ```Coverage.hit(ID)``` which sets a boolean variable in place ID to true, signifying that we have explored that branch. After the test has run all true values will output their index, showing what branches were explored and what branches that were not covered.
@@ -170,7 +174,10 @@ but we can not explore some of the branches that JaCoCo explores through conditi
 #### Kevin:
 The parts of the remove method that were not covered through the original tests were two checks for when the Map was full (3 elements) and we try to remove either key 1 or key 2 when the key itself is null. Below we can see the branch coverage for the remove method:
 
-[FIGURE PLACEHOLDER]
+<img width="906" height="89" alt="image" src="https://github.com/user-attachments/assets/7a2f737d-e494-47ed-869f-aba476500cec" />
+and after:
+<img width="912" height="86" alt="image" src="https://github.com/user-attachments/assets/64056e0d-83bd-4478-b186-ea76a6aece7d" />
+
 
 Javadocs for the two methods covering the case above can be found below.
 ```
@@ -345,11 +352,13 @@ void testEquals7() {
 
 ### Report of old coverage:
 
-[FIGURE PLACEHOLDER]
+<img width="1046" height="206" alt="image" src="https://github.com/user-attachments/assets/5e025521-f4db-41ee-b256-0527e0eab51f" />
+
 
 ### Report of new coverage:
 
-[FIGURE PLACEHOLDER]
+<img width="1049" height="231" alt="image" src="https://github.com/user-attachments/assets/21f63617-f165-420e-b130-a91eaea0af74" />
+
 
 ### Test cases added:
 
