@@ -971,111 +971,130 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
             Coverage.hit(201);
             return delegateMap.put(key, value);
         }
+        else {
+            Coverage.hit(202);
+        }
         // change existing mapping
         if (key == null) {
-            Coverage.hit(202);
+            Coverage.hit(203);
             switch (size) {  // drop through
             case 3:
-                Coverage.hit(203);
+                Coverage.hit(204);
                 if (key3 == null) {
-                    Coverage.hit(204);
+                    Coverage.hit(205);
                     final V old = value3;
                     value3 = value;
                     return old;
                 }
-            case 2:
-                Coverage.hit(205);
-                if (key2 == null) {
+                else {
                     Coverage.hit(206);
+                }
+            case 2:
+                Coverage.hit(207);
+                if (key2 == null) {
+                    Coverage.hit(208);
                     final V old = value2;
                     value2 = value;
                     return old;
                 }
+                else {
+                    Coverage.hit(209);
+                }
             case 1:
-                Coverage.hit(207);
+                Coverage.hit(210);
                 if (key1 == null) {
-                    Coverage.hit(208);
+                    Coverage.hit(211);
                     final V old = value1;
                     value1 = value;
                     return old;
                 }
+                else {
+                    Coverage.hit(212);
+                }
             }
         } else if (size > 0) {
-            Coverage.hit(209);
+            Coverage.hit(213);
             final int hashCode = key.hashCode();
             switch (size) {  // drop through
             case 3:
-                Coverage.hit(210);
+                Coverage.hit(214);
                 if (hash3 == hashCode) {
-                    Coverage.hit(211);
+                    Coverage.hit(215);
                     if(key.equals(key3)) {
-                        Coverage.hit(212);
+                        Coverage.hit(216);
                         final V old = value3;
                         value3 = value;
                         return old;
                     }
                     else {
-                        Coverage.hit(213);
+                        Coverage.hit(217);
                     }
                 }
                 else {
-                    Coverage.hit(214);
+                    Coverage.hit(218);
                 }
             case 2:
-                Coverage.hit(215);
+                Coverage.hit(219);
                 if (hash2 == hashCode) {
-                    Coverage.hit(216);
+                    Coverage.hit(220);
                     if(key.equals(key2)) {
-                        Coverage.hit(217);
+                        Coverage.hit(221);
                         final V old = value2;
                         value2 = value;
                         return old;
                     }
                     else {
-                        Coverage.hit(218);
+                        Coverage.hit(222);
                     }
                 }
                 else {
-                    Coverage.hit(219);
+                    Coverage.hit(223);
                 }
             case 1:
-                Coverage.hit(220);
+                Coverage.hit(224);
                 if (hash1 == hashCode) {
-                    Coverage.hit(221);
+                    Coverage.hit(225);
                     if(key.equals(key1)) {
-                        Coverage.hit(222);
+                        Coverage.hit(226);
                         final V old = value1;
                         value1 = value;
                         return old;
                     }
                     else {
-                        Coverage.hit(223);
+                        Coverage.hit(227);
                     }
                 }
                 else {
-                    Coverage.hit(224);
+                    Coverage.hit(228);
                 }
             }
+        }
+        else {
+            Coverage.hit(229);
         }
 
         // add new mapping
         switch (size) {
         case 2:
+            Coverage.hit(230);
             hash3 = key == null ? 0 : key.hashCode();
             key3 = key;
             value3 = value;
             break;
         case 1:
+            Coverage.hit(231);
             hash2 = key == null ? 0 : key.hashCode();
             key2 = key;
             value2 = value;
             break;
         case 0:
+            Coverage.hit(232);
             hash1 = key == null ? 0 : key.hashCode();
             key1 = key;
             value1 = value;
             break;
         default:
+            Coverage.hit(233);
             convertToMap();
             delegateMap.put(key, value);
             return null;
