@@ -400,9 +400,9 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         map1.put((K) "b", (V) "testB");
         map1.put((K) "c", (V) "testC");
 
-        final Map<String, String> other = new java.util.HashMap<>();
-        map1.put((K) "a", (V) "testA");
-        map1.put((K) "b", (V) "testB");
+        final Map<K, V> other = new java.util.HashMap<>();
+        other.put((K) "a", (V) "testA");
+        other.put((K) "b", (V) "testB");
 
         assertFalse(map1.equals(other));
     }
