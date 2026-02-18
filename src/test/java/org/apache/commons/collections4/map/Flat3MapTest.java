@@ -98,7 +98,6 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
     private static final Integer ONE = Integer.valueOf(1);
     private static final Integer TWO = Integer.valueOf(2);
     private static final Integer THREE = Integer.valueOf(3);
-    private static final Integer FOUR = Integer.valueOf(4);
     private static final String TEN = "10";
     private static final String TWENTY = "20";
 
