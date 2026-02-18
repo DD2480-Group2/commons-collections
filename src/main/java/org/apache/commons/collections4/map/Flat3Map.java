@@ -544,6 +544,9 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
     /** Map, used while in delegate mode */
     private transient AbstractHashedMap<K, V> delegateMap;
 
+    /** Value for old value, used while in flat mode*/
+    private transient V oldValue;
+
     /**
      * Constructs a new instance.
      */
@@ -575,6 +578,7 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
             key1 = key2 = key3 = null;
             value1 = value2 = value3 = null;
         }
+        oldValue = null;
     }
 
     /**
@@ -932,53 +936,83 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         if (delegateMap != null) {
             return delegateMap.put(key, value);
         }
+
+        oldValue = null; // Reset oldValue
+
         // change existing mapping
         if (key == null) {
-            switch (size) {  // drop through
-            case 3:
-                if (key3 == null) {
-                    final V old = value3;
-                    value3 = value;
-                    return old;
-                }
-            case 2:
-                if (key2 == null) {
-                    final V old = value2;
-                    value2 = value;
-                    return old;
-                }
-            case 1:
-                if (key1 == null) {
-                    final V old = value1;
-                    value1 = value;
-                    return old;
-                }
+            if (updateIfNullKeyFound(value)) {
+                return oldValue;
             }
-        } else if (size > 0) {
+        }
+        else if (size > 0) {
             final int hashCode = key.hashCode();
-            switch (size) {  // drop through
-            case 3:
-                if (hash3 == hashCode && key.equals(key3)) {
-                    final V old = value3;
-                    value3 = value;
-                    return old;
-                }
-            case 2:
-                if (hash2 == hashCode && key.equals(key2)) {
-                    final V old = value2;
-                    value2 = value;
-                    return old;
-                }
-            case 1:
-                if (hash1 == hashCode && key.equals(key1)) {
-                    final V old = value1;
-                    value1 = value;
-                    return old;
-                }
+            if(updateIfKeyMatches(key, value, hashCode)) {
+                return oldValue;
             }
         }
 
         // add new mapping
+        if (convertedToDelegateOnInsert(key, value)) return null;
+        size++;
+        return null;
+    }
+
+    private boolean updateIfNullKeyFound(V newValue) {
+        switch (size) {  // drop through
+            case 3:
+                if (key3 == null) {
+                    oldValue = value3;
+                    value3 = newValue;
+                    return true;
+                }
+            case 2:
+                if (key2 == null) {
+                    oldValue = value2;
+                    value2 = newValue;
+                    return true;
+                }
+            case 1:
+                if (key1 == null) {
+                    oldValue = value1;
+                    value1 = newValue;
+                    return true;
+                }
+        }
+        return false;
+    }
+
+    private boolean updateIfKeyMatches(K key, V value, int hashCode) {
+        switch (size) {  // drop through
+            case 3:
+                if (keysAreEqual(key, hashCode, key3, hash3)) {
+                    oldValue = value3;
+                    value3 = value;
+                    return true;
+                }
+            case 2:
+                if (keysAreEqual(key, hashCode, key2, hash2)) {
+                    oldValue = value2;
+                    value2 = value;
+                    return true;
+                }
+            case 1:
+                if (keysAreEqual(key, hashCode, key1, hash1)) {
+                    oldValue = value1;
+                    value1 = value;
+                    return true;
+                }
+        }
+        return false;
+    }
+
+
+
+    private boolean keysAreEqual(K key, int hashCode, K keyParam, int hashParam) {
+        return hashParam == hashCode && key.equals(keyParam);
+    }
+
+    private boolean convertedToDelegateOnInsert(K key, V value) {
         switch (size) {
         case 2:
             hash3 = key == null ? 0 : key.hashCode();
@@ -998,10 +1032,9 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
         default:
             convertToMap();
             delegateMap.put(key, value);
-            return null;
+            return true;
         }
-        size++;
-        return null;
+        return false;
     }
 
     /**
