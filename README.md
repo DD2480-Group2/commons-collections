@@ -117,6 +117,10 @@ To lower the CC the if statements to cap the value of the parameters was replace
 
 ### Carried out refactoring (optional, P+):
 
+#### Kevin
+<img width="912" height="61" alt="image" src="https://github.com/user-attachments/assets/3ac9c040-a559-4264-8f0e-73f8548ce84c" />
+
+
 Our branch for refactored functions:
 [Development-Refactoring](https://github.com/DD2480-Group2/commons-collections/tree/Development-Refactoring)
 
