@@ -418,36 +418,55 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
         assertSame(THREE, obj);
     }
 
+    /**
+     * Verifies that a null lookup returns null when the map contains only
+     * non-null keys (size = 3, flat storage, full fall-through without match).
+     */
     @Test
     void testGet4() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
 
-        m.put(ONE, ONE);                 // size=1, key1 != null
-        assertNull(m.get(null));         // goes into key==null switch, hits 514
+        m.put(ONE, ONE);
+        m.put(TWO, TWO);
+        m.put(THREE, THREE);
+        assertNull(m.get(null));
     }
 
+    /**
+     * Verifies that a lookup on an empty map returns null
+     * (non-null key, size = 0 branch).
+     */
     @Test
     void testGet5() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
 
-        assertNull(m.get(ONE));          // hits 505
+        assertNull(m.get(ONE));
     }
 
+    /**
+     * Verifies successful retrieval when the key exists in a single-entry map
+     * (size = 1, non-null key, direct match).
+     */
     @Test
     void testGet6() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
 
         m.put(ONE, ONE);
-        assertSame(ONE, m.get(ONE));     // hits 504, then 521 then 522
+        assertSame(ONE, m.get(ONE));
     }
 
+    /**
+     * Verifies that a lookup returns null when the key is absent
+     * in a non-empty map (size = 1, non-null key, no match).
+     */
     @Test
     void testGet7() {
         final Flat3Map<Integer, Integer> m = new Flat3Map<>();
 
         m.put(ONE, ONE);
-        assertNull(m.get(TWO));          // hits 523
+        assertNull(m.get(TWO));
     }
+
 
 
     @Test
