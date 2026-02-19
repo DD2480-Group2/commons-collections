@@ -709,6 +709,10 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
      * Tests the condition when a hash collision occurs between two distinct strings.
      * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
      *
+     * A collision occurs between strings "FB" and "Ea".
+     * Since "FB" is placed as the third entry, and the current size 3, the if-check with && will return false
+     * and entry with key "Ea" will be placed as a new entry.
+     *
      */
     @Test
     void testPut8() {
@@ -733,6 +737,10 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
      * Tests the condition when a hash collision occurs between two distinct strings.
      * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
      *
+     * A collision occurs between strings "FB" and "Ea".
+     * Since "FB" is placed as the second entry, and the current size 3, the if-check with && will return false
+     * and entry with key "Ea" will be placed as a new entry.
+     *
      */
     @Test
     void testPut9() {
@@ -756,6 +764,10 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
     /**
      * Tests the condition when a hash collision occurs between two distinct strings.
      * The if-check enforces boolean && condition, thus we expect a new mapping to occur.
+     *
+     * A collision occurs between strings "FB" and "Ea".
+     * Since "FB" is placed as the first entry, and the current size 3, the if-check with && will return false
+     * and entry with key "Ea" will be placed as a new entry.
      *
      */
     @Test
