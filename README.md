@@ -58,6 +58,14 @@ No, at the moment we are pleased with Apache Commons Collections.
 
 ## 3.4 Complexity
 
+| Function                    | Jacoco CC | Lizard CC | Counted CC | Row # in File |
+|-----------------------------|----------:|----------:|-----------:|--------------:|
+| remove                      |        29 |        29 |         29 |          1060 |
+| put                         |        25 |        25 |         26 |           932 |
+| equals                      |        15 |        15 |         15 |           756 |
+| ConcurrentReferenceHashMap  |        12 |        11 |         11 |          1443 |
+| get                         |        19 |        19 |         19 |           809 |
+
 ### Complex function 1: remove @src/main/java/…\map\Flat3Map.java
 1. Both group members who counted the functions CC independently got the same result of 29, which also aligned with the output from Lizard.
 2. In combination with its high CC, the function also has many LOC with about 140. This is much higher than the average function in the project according to lizard who reported an average of 7 LOC per function.
