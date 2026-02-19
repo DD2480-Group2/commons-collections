@@ -256,6 +256,10 @@ Before:
 <img width="494" height="738" alt="image" src="https://github.com/user-attachments/assets/fea36010-87f5-4e20-aca4-7b51f1c50712" />
 <img width="503" height="391" alt="image" src="https://github.com/user-attachments/assets/02ce9d31-39d2-461c-9830-a666d0dae323" />
 
+After:
+<img width="1284" height="116" alt="image" src="https://github.com/user-attachments/assets/3c2e2046-d2d5-4a9f-97c7-abe41cdcff0e" />
+<img width="557" height="882" alt="image" src="https://github.com/user-attachments/assets/6dc3e8dd-f8cb-4f1b-a663-a150d92a8826" />
+<img width="561" height="467" alt="image" src="https://github.com/user-attachments/assets/580c8e87-34d5-4168-b5ef-844b07f43119" />
 
 Javadocs of the tests:
 ```
@@ -417,8 +421,9 @@ Test coverage before:
 <img width="1038" height="788" alt="image" src="https://github.com/user-attachments/assets/77f74493-220c-4821-8061-6c4ac704c429" />
 
 Test coverage after:
-<img width="1457" height="163" alt="image" src="https://github.com/user-attachments/assets/c135fb21-2b22-4b2a-bef0-b041f6664dd8" />
-<img width="1038" height="670" alt="image" src="https://github.com/user-attachments/assets/443b9954-f940-4fec-97a6-fd00749ce8fd" />
+<img width="1328" height="115" alt="image" src="https://github.com/user-attachments/assets/c294a331-5da4-4755-82fb-813a00e916c2" />
+<img width="1169" height="622" alt="image" src="https://github.com/user-attachments/assets/a897eb6e-f170-4bd3-b03f-999d0b62831c" />
+
 
 Tests comments:
 ```
@@ -448,8 +453,8 @@ Before:
 <img width="671" height="883" alt="image" src="https://github.com/user-attachments/assets/6348c786-9a01-467e-94aa-f614a70e1243" />
 
 After:
-<img width="1428" height="52" alt="image" src="https://github.com/user-attachments/assets/03415324-b7c5-4e13-bc1e-fa6f65bf5a19" />
-
+<img width="1075" height="97" alt="image" src="https://github.com/user-attachments/assets/616eb0ff-eca1-43d1-b94b-012900659aa8" />
+<img width="560" height="728" alt="image" src="https://github.com/user-attachments/assets/7270395a-ef6a-4fe3-acc3-a3461466675f" />
 
 
 ### Report of old coverage:
