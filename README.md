@@ -130,11 +130,6 @@ The function has high cyclomatic complexity due to the number of different branc
 
 The refactoring could be carried out by leaving the first if-statement as is, while extracting the switch-statements in the 2 other if-statements and instead calling two methods e.g. ```getNullKey()``` and ```getNonNullKey(key, hashCode)```. This would reduce the cyclomatic complexity of ```get``` from 19, to around 3.
 
-Before: 
-<img width="1424" height="66" alt="image" src="https://github.com/user-attachments/assets/db1493b2-7126-4491-bd92-b8b7d807762f" />
-
-After:
-<img width="1428" height="52" alt="image" src="https://github.com/user-attachments/assets/03415324-b7c5-4e13-bc1e-fa6f65bf5a19" />
 
 ### Carried out refactoring (optional, P+):
 
@@ -374,8 +369,12 @@ Tests comments:
 ```
 
 #### Ahmed:
+Before: 
+<img width="1424" height="66" alt="image" src="https://github.com/user-attachments/assets/db1493b2-7126-4491-bd92-b8b7d807762f" />
 
----
+After:
+<img width="1428" height="52" alt="image" src="https://github.com/user-attachments/assets/03415324-b7c5-4e13-bc1e-fa6f65bf5a19" />
+
 
 
 ### Report of old coverage:
@@ -399,10 +398,10 @@ Tests comments:
 
 #### Ahmed:
 
--
--
--
--	
+- testGet4
+- testGet5
+- testGet6
+- testGet7
 
 #### Kevin:
 
