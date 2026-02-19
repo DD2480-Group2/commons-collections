@@ -196,18 +196,14 @@ but we can not explore some of the branches that JaCoCo explores through conditi
 ## Coverage improvement
 ### Show the comments that describe the requirements for the coverage.
 #### Kevin:
-The parts of the remove method that were not covered through the original tests were two checks for when the Map was full (3 elements) and we try to remove either key 1 or key 2 when the key itself is null. Before:  
+The parts of the remove method that were not covered through the original tests were two checks for when the Map was full (3 elements) and we try to remove either key 1 or key 2 when the key itself is null. 
+Before:  
+<img width="906" height="89" alt="image" src="https://github.com/user-attachments/assets/7a2f737d-e494-47ed-869f-aba476500cec" />
 <img width="408" height="638" alt="image" src="https://github.com/user-attachments/assets/9cbcafd4-fdc8-4db1-8afb-cc5ac64f0c2f" />
 
 After:  
-<img width="410" height="637" alt="image" src="https://github.com/user-attachments/assets/34085c85-2cef-48cd-af50-238178049f89" />
-
-Below we can see the branch coverage for the remove method:
-
-<img width="906" height="89" alt="image" src="https://github.com/user-attachments/assets/7a2f737d-e494-47ed-869f-aba476500cec" />
-and after:  
 <img width="912" height="86" alt="image" src="https://github.com/user-attachments/assets/64056e0d-83bd-4478-b186-ea76a6aece7d" />
-
+<img width="410" height="637" alt="image" src="https://github.com/user-attachments/assets/34085c85-2cef-48cd-af50-238178049f89" />
 
 Javadocs for the two methods covering the case above can be found below.
 ```
@@ -255,8 +251,13 @@ I also implemented a test for the equals method where no previous test confirmed
 
 #### Teoman:
 
-Before improving the coverage, the coverage was 88% as noted above and in the comparison image below.
+Before:
+<img width="1420" height="125" alt="image" src="https://github.com/user-attachments/assets/3340bfdc-ce9f-4d12-ae26-56cadd803085" />
+<img width="494" height="738" alt="image" src="https://github.com/user-attachments/assets/fea36010-87f5-4e20-aca4-7b51f1c50712" />
+<img width="503" height="391" alt="image" src="https://github.com/user-attachments/assets/02ce9d31-39d2-461c-9830-a666d0dae323" />
 
+
+Javadocs of the tests:
 ```
 /**
 * Tests that map is correctly delegated when size extends beyond three, and preserves elements.
@@ -412,9 +413,11 @@ void testEquals7() {
 
 #### Adam:
 Test coverage before:
+<img width="1473" height="127" alt="image" src="https://github.com/user-attachments/assets/d45418d1-4604-473e-8faa-2d031edf6859" />
 <img width="1038" height="788" alt="image" src="https://github.com/user-attachments/assets/77f74493-220c-4821-8061-6c4ac704c429" />
 
 Test coverage after:
+<img width="1457" height="163" alt="image" src="https://github.com/user-attachments/assets/c135fb21-2b22-4b2a-bef0-b041f6664dd8" />
 <img width="1038" height="670" alt="image" src="https://github.com/user-attachments/assets/443b9954-f940-4fec-97a6-fd00749ce8fd" />
 
 Tests comments:
@@ -441,7 +444,8 @@ Tests comments:
 
 #### Ahmed:
 Before:
-<img width="1424" height="66" alt="image" src="https://github.com/user-attachments/assets/db1493b2-7126-4491-bd92-b8b7d807762f" />
+<img width="1418" height="65" alt="image" src="https://github.com/user-attachments/assets/1327f2af-e049-4aab-9a8f-a15c24e15341" />
+<img width="671" height="883" alt="image" src="https://github.com/user-attachments/assets/6348c786-9a01-467e-94aa-f614a70e1243" />
 
 After:
 <img width="1428" height="52" alt="image" src="https://github.com/user-attachments/assets/03415324-b7c5-4e13-bc1e-fa6f65bf5a19" />
