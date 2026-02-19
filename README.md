@@ -89,6 +89,11 @@ No, this function does throw an exception but it does not increase CC since it i
 Yes, the documentation is very clear. However, I would have added information about the max cap on concurrencyLevel and initialCapacity.
 
 ### Complex function 5:
+1. The manual calculation of the CC matches the result reported by Lizard (CC = 19).
+2. This function has 38 LOC which seems to be relatively low if we compare it to the previous ones. It is indeed more complex than equals() but has fewer LOC.
+3. It returns the value associated with key, using a fast manual lookup for up to 3 elements, and a normal HashMap lookup once the map grows larger.
+4. Although this function contains no exception handling, Lizard would include it in the complexity calculation if it were implemented inside a try–catch block.
+5. No. The Javadoc states the general contract (returns the mapped value or null), but it does not describe the different behaviors caused by the internal branches (flat storage vs delegated map, special handling of null, etc.). It is functionally correct but not detailed about the various execution paths.
 
 
 
@@ -120,7 +125,11 @@ After:
 <img width="1457" height="163" alt="image" src="https://github.com/user-attachments/assets/c135fb21-2b22-4b2a-bef0-b041f6664dd8" />
 
 
-### Function 5:  
+### Function 5: get
+The function has high cyclomatic complexity due to the number of different branches being explored in the same function. At the top-level of the function there are 3 if-statements, where 1 simply return if true, while the 2 others contain switch-statements and many if-statements that increase the cyclomatic complexity. 
+
+The refactoring could be carried out by leaving the first if-statement as is, while extracting the switch-statements in the 2 other if-statements and instead calling two methods e.g. ```getNullKey()``` and ```getNonNullKey(key, hashCode)```. This would reduce the cyclomatic complexity of ```get``` from 19, to around 3.
+
 
 ### Carried out refactoring (optional, P+):
 
