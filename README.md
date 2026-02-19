@@ -250,6 +250,7 @@ I also implemented a test for the equals method where no previous test confirmed
 ```
 
 #### Teoman:
+The previous tests did not handle hash collisions so I did 3 tests that each handled a hash collision, 1 test for each position in a 3 element long Flat3Map due to the switch statement that handles the function based on the elements positions. The 4th test checked that adding a fourth element with a null key still preserved every element
 
 Before:
 <img width="1420" height="125" alt="image" src="https://github.com/user-attachments/assets/3340bfdc-ce9f-4d12-ae26-56cadd803085" />
@@ -416,6 +417,8 @@ void testEquals7() {
 ```
 
 #### Adam:
+The branches that was not previously covered was those that handled invalid parameters. I wrote 3 tests checking that the parameters loadFactor, initialCapacity and concurrencyLevel throw the exception IllegalArgumentException when negative or 0 depending on the requirements. The 4th test was that concurrencyLevel was set to 1 << 16 when exceeding that max value. This covered 4 branches that was previously not tested. 
+
 Test coverage before:
 <img width="1473" height="127" alt="image" src="https://github.com/user-attachments/assets/d45418d1-4604-473e-8faa-2d031edf6859" />
 <img width="1038" height="788" alt="image" src="https://github.com/user-attachments/assets/77f74493-220c-4821-8061-6c4ac704c429" />
@@ -448,6 +451,12 @@ Tests comments:
 ```
 
 #### Ahmed:
+This method lacked tests that covered branches where the return should be null. I added these tests:
+1. a null lookup should return null if there are only non-null keys
+2. a lookup on an empty map should return null
+3. a lookup with a key that does not exist in the map should return null
+4. also made a test that makes sure maps of size 1 return correct value when given the right key. 
+
 Before:
 <img width="1418" height="65" alt="image" src="https://github.com/user-attachments/assets/1327f2af-e049-4aab-9a8f-a15c24e15341" />
 <img width="671" height="883" alt="image" src="https://github.com/user-attachments/assets/6348c786-9a01-467e-94aa-f614a70e1243" />
@@ -456,6 +465,30 @@ After:
 <img width="1075" height="97" alt="image" src="https://github.com/user-attachments/assets/616eb0ff-eca1-43d1-b94b-012900659aa8" />
 <img width="560" height="728" alt="image" src="https://github.com/user-attachments/assets/7270395a-ef6a-4fe3-acc3-a3461466675f" />
 
+```
+/**
+* Verifies that a null lookup returns null when the map contains only
+* non-null keys (size = 3, flat storage, full fall-through without match).
+*/
+```
+```
+/**
+* Verifies that a lookup on an empty map returns null
+* (non-null key, size = 0 branch).
+*/
+```
+```
+/**
+* Verifies successful retrieval when the key exists in a single-entry map
+* (size = 1, non-null key, direct match).
+*/
+```
+```
+/**
+* Verifies that a lookup returns null when the key is absent
+* in a non-empty map (size = 1, non-null key, no match).
+*/
+```
 
 ### Report of old coverage:
 
