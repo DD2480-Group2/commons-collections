@@ -162,7 +162,7 @@ To obtain the patch, use the command ```git diff master..Development-Refactoring
 ## Coverage
 
 ### Tools
-We used JaCoCo as our automated coverage measurement tool. JoCoCo was already integrated into the project through Maven, which made it straightforward to use. We generated a coverage report by running ```mvn test``` and then ```mvn jacoco:report```.
+We used JaCoCo as our automated coverage measurement tool. JaCoCo was already integrated into the project through Maven, which made it straightforward to use. We generated a coverage report by running ```mvn test``` and then ```mvn jacoco:report```.
 
 JaCoCo then produced a HTML report that provided information about instruction coverage, branch coverage and other key-values for analyzing the repo both on class level and on method level.
 
@@ -175,7 +175,7 @@ We implemented a simple manual branch coverage tool by instrumenting the selecte
 Our branch for instrumented code to gather coverage measurements:
 [Development-Coverage branch](https://github.com/DD2480-Group2/commons-collections/tree/Development-Coverage)
 
-To obtain the patch, use the command ```git diff master..Development-Coverage```
+To obtain the patch, use the command ```git diff master..Development-Coverage src```
 
 Our tool supports `if`/`else` statements and `switch` cases, it can also handle loops but only as a way of seeing if at least one iteration of the loop was performed.
 
@@ -187,7 +187,7 @@ Our tool supports `if`/`else` statements and `switch` cases, it can also handle 
 2. What are the limitations of your own tool?
    The limitations in our implemented tool lies partly in when if-statements contain multiple conditionals connected by ```&&``` and ```||```, since our tool can only explore the branches the code goes to, we do not explore the different combinations of conditionals inside the if-statement, but only when the if-statement results in true or false. There is also currently limitations regarding how loops are handled, since we only explore different branches, we can only explore if we enter a loop or not, but not how many times we iterate.
 
-but we can not explore some of the branches that JaCoCo explores through conditional statements including ```&&``` & ```||```. Due to this our output might be interpreted as if a higher percentage of the branches are being covered, compared to JaCoCo’s output. So our
+	but we can not explore some of the branches that JaCoCo explores through conditional statements including ```&&``` & ```||```. Due to this our output might be interpreted as if a higher percentage of the branches are being covered, compared to JaCoCo’s output. So our
 
 3. Are the results of your tool consistent with existing coverage tools?
    The output is somewhat aligned with what JaCoCo outputs with exceptions for when the code contains if-statements containing multiple conditionals connected through ```&&``` and ```||```, since JaCoCo explores all possible combinations of parameters for the if-statement, our tool simply explores the if-statement as true or false. This makes it so our tool tells a story of a higher branch coverage than might be present, whereas JaCoCo will determine more possible branch outcomes.
