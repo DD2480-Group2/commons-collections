@@ -196,14 +196,18 @@ Our tool supports `if`/`else` statements and `switch` cases, it can also handle 
 ## Coverage improvement
 ### Show the comments that describe the requirements for the coverage.
 #### Kevin:
-The parts of the remove method that were not covered through the original tests were two checks for when the Map was full (3 elements) and we try to remove either key 1 or key 2 when the key itself is null. 
-Before:  
-<img width="906" height="89" alt="image" src="https://github.com/user-attachments/assets/7a2f737d-e494-47ed-869f-aba476500cec" />
+The parts of the remove method that were not covered through the original tests were two checks for when the Map was full (3 elements) and we try to remove either key 1 or key 2 when the key itself is null. Before:  
 <img width="408" height="638" alt="image" src="https://github.com/user-attachments/assets/9cbcafd4-fdc8-4db1-8afb-cc5ac64f0c2f" />
 
 After:  
-<img width="912" height="86" alt="image" src="https://github.com/user-attachments/assets/64056e0d-83bd-4478-b186-ea76a6aece7d" />
 <img width="410" height="637" alt="image" src="https://github.com/user-attachments/assets/34085c85-2cef-48cd-af50-238178049f89" />
+
+Below we can see the branch coverage for the remove method:
+
+<img width="906" height="89" alt="image" src="https://github.com/user-attachments/assets/7a2f737d-e494-47ed-869f-aba476500cec" />
+and after:  
+<img width="912" height="86" alt="image" src="https://github.com/user-attachments/assets/64056e0d-83bd-4478-b186-ea76a6aece7d" />
+
 
 Javadocs for the two methods covering the case above can be found below.
 ```
@@ -251,6 +255,7 @@ I also implemented a test for the equals method where no previous test confirmed
 
 #### Teoman:
 The previous tests did not handle hash collisions so I did 3 tests that each handled a hash collision, 1 test for each position in a 3 element long Flat3Map due to the switch statement that handles the function based on the elements positions. The 4th test checked that adding a fourth element with a null key still preserved every element
+Before improving the coverage, the coverage was 88% as noted above and in the comparison image below.
 
 Before:
 <img width="1420" height="125" alt="image" src="https://github.com/user-attachments/assets/3340bfdc-ce9f-4d12-ae26-56cadd803085" />
@@ -262,7 +267,6 @@ After:
 <img width="557" height="882" alt="image" src="https://github.com/user-attachments/assets/6dc3e8dd-f8cb-4f1b-a663-a150d92a8826" />
 <img width="561" height="467" alt="image" src="https://github.com/user-attachments/assets/580c8e87-34d5-4168-b5ef-844b07f43119" />
 
-Javadocs of the tests:
 ```
 /**
 * Tests that map is correctly delegated when size extends beyond three, and preserves elements.
@@ -420,7 +424,6 @@ void testEquals7() {
 The branches that was not previously covered was those that handled invalid parameters. I wrote 3 tests checking that the parameters loadFactor, initialCapacity and concurrencyLevel throw the exception IllegalArgumentException when negative or 0 depending on the requirements. The 4th test was that concurrencyLevel was set to 1 << 16 when exceeding that max value. This covered 4 branches that was previously not tested. 
 
 Test coverage before:
-<img width="1473" height="127" alt="image" src="https://github.com/user-attachments/assets/d45418d1-4604-473e-8faa-2d031edf6859" />
 <img width="1038" height="788" alt="image" src="https://github.com/user-attachments/assets/77f74493-220c-4821-8061-6c4ac704c429" />
 
 Test coverage after:
@@ -458,8 +461,7 @@ This method lacked tests that covered branches where the return should be null. 
 4. also made a test that makes sure maps of size 1 return correct value when given the right key. 
 
 Before:
-<img width="1418" height="65" alt="image" src="https://github.com/user-attachments/assets/1327f2af-e049-4aab-9a8f-a15c24e15341" />
-<img width="671" height="883" alt="image" src="https://github.com/user-attachments/assets/6348c786-9a01-467e-94aa-f614a70e1243" />
+<img width="1424" height="66" alt="image" src="https://github.com/user-attachments/assets/db1493b2-7126-4491-bd92-b8b7d807762f" />
 
 After:
 <img width="1421" height="127" alt="image" src="https://github.com/user-attachments/assets/4e4ab216-230a-4a26-869f-f7c8f36c0ddd" />
