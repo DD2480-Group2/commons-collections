@@ -133,7 +133,7 @@ After:
 <img width="1457" height="163" alt="image" src="https://github.com/user-attachments/assets/c135fb21-2b22-4b2a-bef0-b041f6664dd8" />
 
 
-### Function 5: get
+### Function 5: `get(final Object key)`
 The function has high cyclomatic complexity due to the number of different branches being explored in the same function. At the top-level of the function there are 3 if-statements, where 1 simply return if true, while the 2 others contain switch-statements and many if-statements that increase the cyclomatic complexity.
 
 The refactoring could be carried out by leaving the first if-statement as is, while extracting the switch-statements in the 2 other if-statements and instead calling two methods e.g. ```getNullKey()``` and ```getNonNullKey(key, hashCode)```. This would reduce the cyclomatic complexity of ```get``` from 19, to around 3.
