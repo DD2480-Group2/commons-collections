@@ -17,13 +17,22 @@
 
 package org.apache.commons.collections4;
 
+/**
+ * Coverage tool used to inspect what branches that are being explored.
+ * By calling the method hit with different index,
+ * you can see if those indexes are hit when running tests for that method.
+ */
 public class Coverage {
 
-    public static final boolean[] coverage_array  = new boolean[600]; // IDs 0..199
+    public static final boolean[] coverage_array  = new boolean[600];
     private static boolean endPrint = false;
 
+    /**
+     * Method that sets element of class field to true. If an element is set to true,
+     * the method will also invoke the reportAll method to be run as the last instructions before the compilation ends.
+     * @param id the number that you give that branch
+     */
     public static void hit(int id) {
-        // Mark your
         coverage_array[id] = true;
 
         if (!endPrint) {
@@ -37,10 +46,13 @@ public class Coverage {
 
         System.out.print("HIT: ");
         for (int i = 0; i < coverage_array.length; i++) {
+
+            if (i % 100 == 0)
+                System.out.println("\n");
+
             if (coverage_array[i]) {
                 System.out.print(i + " ");
             }
         }
-        System.out.println("=============================\n");
     }
 }
