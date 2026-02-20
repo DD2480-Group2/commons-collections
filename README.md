@@ -88,7 +88,7 @@ It is a constructor for the class ConcurrentReferenceHashMap. It creates a new, 
 No, this function does throw an exception but it does not increase CC since it is not in a try-catch block but rather is used as a return if the first if-statement is true.
 Yes, the documentation is very clear. However, I would have added information about the max cap on concurrencyLevel and initialCapacity.
 
-### Complex function 5:
+### Complex function 5: get src/main/java/org/apache/commons/collections4/map/Flat3Map.java 
 1. The manual calculation of the CC matches the result reported by Lizard (CC = 19).
 2. This function has 38 LOC which seems to be relatively low if we compare it to the previous ones. It is indeed more complex than equals() but has fewer LOC.
 3. It returns the value associated with key, using a fast manual lookup for up to 3 elements, and a normal HashMap lookup once the map grows larger.
