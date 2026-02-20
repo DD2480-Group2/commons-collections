@@ -182,6 +182,7 @@ Before:
 | Element        | Instruction Coverage | Branch Coverage | Missed | Cxty |
 |----------------|---------------------:|----------------:|-------:|-----:|
 | remove(Object) |                  84% |             76% |     12 |   29 |  
+
 After:
 
 | Element        | Instruction Coverage | Branch Coverage | Missed | Cxty |
@@ -209,13 +210,14 @@ Before improving the coverage, the coverage was 88% as noted above and in the co
 <details>
     <summary>JaCoCo before improvement </summary>
 
-
+<img width="558" height="1177" alt="image" src="https://github.com/user-attachments/assets/96257745-c8e9-4858-a3dc-78fa0f38338b" />
 
 </details>
 
 <details>
     <summary>JaCoCo After Coverage improvement</summary>
 
+<img width="496" height="1127" alt="image" src="https://github.com/user-attachments/assets/cd83f1c2-e48e-4919-b9e9-d84bb33a85c4" />
 
 
 </details>
@@ -311,7 +313,7 @@ Tests are located in `src/test/java/org/apache/commons/collections4/map/Flat3Map
 <details>
     <summary>JaCoCo before improvement </summary>
 
-
+<img width="1219" height="550" alt="image" src="https://github.com/user-attachments/assets/647522b4-fa39-48cd-bb6b-c30ee9be8e47" />
 
 </details>
 
@@ -333,6 +335,7 @@ Before:
 | Element                    | Instruction Coverage | Branch Coverage | Missed | Cxty |
 |----------------------------|---------------------:|----------------:|-------:|-----:|
 | ConcurrentReferenceHashMap |                  91% |             68% |      7 |   12 |  
+
 After:
 
 | Element                    | Instruction Coverage | Branch Coverage | Missed | Cxty |
@@ -358,13 +361,14 @@ Tests are located in `src/test/java/org/apache/commons/collections4/map/Concurre
 <details>
     <summary>JaCoCo before improvement </summary>
 
-
+<img width="902" height="1013" alt="image" src="https://github.com/user-attachments/assets/4d0cc988-894f-474c-9948-58696b4a3a80" />
 
 </details>
 
 <details>
     <summary>JaCoCo After Coverage improvement</summary>
 
+<img width="533" height="684" alt="image" src="https://github.com/user-attachments/assets/97827f63-b97f-4043-a290-3f41267126bd" />
 
 </details>
 
@@ -376,6 +380,7 @@ Before:
 | Element     | Instruction Coverage | Branch Coverage | Missed | Cxty |
 |-------------|---------------------:|----------------:|-------:|-----:|
 | get(Object) |                 100% |             84% |      5 |   19 |  
+
 After:
 
 | Element     | Instruction Coverage | Branch Coverage | Missed | Cxty |
