@@ -844,42 +844,71 @@ public class Flat3Map<K, V> implements IterableMap<K, V>, Serializable, Cloneabl
      */
     @Override
     public V get(final Object key) {
-        if (delegateMap != null) {
+        if (delegateMap != null) { 
+            Coverage.hit(501);
             return delegateMap.get(key);
+        } else {
+            Coverage.hit(502);
         }
         if (key == null) {
-            switch (size) {
-            // drop through
+            Coverage.hit(503);
+            switch (size) {// drop through
             case 3:
+                Coverage.hit(506);
                 if (key3 == null) {
+                    Coverage.hit(507);
                     return value3;
+                } else {
+                    Coverage.hit(508);
                 }
             case 2:
+                Coverage.hit(509);
                 if (key2 == null) {
+                    Coverage.hit(510);
                     return value2;
+                } else {
+                    Coverage.hit(511);
                 }
             case 1:
+                Coverage.hit(512);
                 if (key1 == null) {
+                    Coverage.hit(513);
                     return value1;
+                } else {
+                    Coverage.hit(514);
                 }
             }
         } else if (size > 0) {
+            Coverage.hit(504);
             final int hashCode = key.hashCode();
-            switch (size) {
-            // drop through
+            switch (size) {// drop through
             case 3:
+                Coverage.hit(515);
                 if (hash3 == hashCode && key.equals(key3)) {
+                    Coverage.hit(516);
                     return value3;
+                } else {
+                    Coverage.hit(517);
                 }
             case 2:
+                    Coverage.hit(518);
                 if (hash2 == hashCode && key.equals(key2)) {
+                    Coverage.hit(519);
                     return value2;
+                } else {
+                    Coverage.hit(520);
                 }
             case 1:
+                Coverage.hit(521);
                 if (hash1 == hashCode && key.equals(key1)) {
+                    Coverage.hit(522);
                     return value1;
+                } else {
+                    Coverage.hit(523);
                 }
             }
+        } else {
+            Coverage.hit(505);
         }
         return null;
     }
