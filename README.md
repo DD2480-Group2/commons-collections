@@ -230,6 +230,7 @@ Before:
 | Element             | Instruction Coverage | Branch Coverage | Missed | Cxty |
 |---------------------|---------------------:|----------------:|-------:|-----:|
 | put(Object, Object) |                 100% |             88% |      5 |   25 |  
+
 After:
 
 | Element             | Instruction Coverage | Branch Coverage | Missed | Cxty |
