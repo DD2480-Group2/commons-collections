@@ -82,11 +82,12 @@ No, at the moment we are pleased with Apache Commons Collections.
 5. There is minimal documentation for the function as a whole, “Compares this map with another. [...] @return true if equal”. Although it doesn’t explicitly describe the specific cases leading to a false return value, e.g. size differences, absent keys, or non-equal values, its behavior is still clear considering the limited number of possible outcomes, and given the relatively readable code, there isn’t a significant need for much documentation. Still, the function could use some additional documentation than what is currently present.
 
 ### Complex function 4: ConcurrentReferenceHashMap@src/main/java/…/map/ConcurrentReferenceHashMap.java
-This function was chosen since JaCoCo calculated the complexity to be 12 but both manually counting and lizard got the CC to be 11. This was a bit surprising since we believed that JaCoCos complexity was the same as CC but since they write Cxty instead of CC it is possible they calculate complexity in some other way. Lizard does however call their complexity CCN (Cyclomatic Complexity Number) so we assume that 11 is the correct number of CC.
-The function had 47 LOC meaning it is longer than most functions, even slightly longer than Complex function 3 that is more complex (15 CC).
-It is a constructor for the class ConcurrentReferenceHashMap. It creates a new, empty map with the specified initial capacity, reference types, load factor, and concurrency level. The map is divided in segments so different threads can safely access different parts of the map at the same time.
-No, this function does throw an exception but it does not increase CC since it is not in a try-catch block but rather is used as a return if the first if-statement is true.
-Yes, the documentation is very clear. However, I would have added information about the max cap on concurrencyLevel and initialCapacity.
+1. JaCoCo calculated the complexity to be 12 but both manually counting and lizard got the CC to be 11. This was a bit surprising since we believed that JaCoCos complexity was the same as CC but since they write Cxty instead of CC it is possible they calculate complexity in some other way. Lizard does however call their complexity CCN (Cyclomatic Complexity Number) so we assume that 11 is the correct number of CC.
+2. The function had 47 LOC meaning it is longer than most other functions, even slightly longer than Complex function 3 that is more complex (15 CC).
+3. It is a constructor for the class ConcurrentReferenceHashMap. It creates a new, empty map with the specified initial capacity, reference types, load factor, and concurrency level. The map is divided in segments so different threads can safely access different parts of the map at the same time.
+4. No, this function does throw an exception but it does not increase CC since it is not in a try-catch block but rather is used as a return if the first if-statement is true. JaCoCo could count it in their complexity which could be why it is one higher complexity. 
+5. Yes, the documentation is very clear. However, I would have added information about the max cap on concurrencyLevel and initialCapacity.
+
 
 ### Complex function 5:
 1. The manual calculation of the CC matches the result reported by Lizard (CC = 19).
